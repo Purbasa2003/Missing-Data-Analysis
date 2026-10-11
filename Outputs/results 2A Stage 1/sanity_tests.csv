@@ -1,0 +1,37 @@
+section,check,result,detail
+2,Generator returns n = 100 rows with 3 predictors,PASS,
+2,OLS on complete data is unbiased for all four coefficients (2000 datasets),PASS,"mean estimates: 4.999, 2.001, -1.495, 1.002"
+3,"Exactly k values deleted in every dataset, mechanism and severity",PASS,
+3,Deleted sets are nested across severity levels,PASS,
+3,MCAR: no selection on X1 or Y (all gaps < 0.03 SD),PASS,
+3,"MAR: deleted rows have clearly lower X1 (gap < -0.5), none on X2 (|gap| < 0.03)",PASS,
+3,MNAR: deleted rows have clearly higher Y (gap > 0.5),PASS,
+3,MNAR_mild is weaker than MNAR at every level,PASS,
+3,"Complete Case beta1 is unbiased under MCAR and MAR (|bias| < 4 MC SE, all levels)",PASS,
+3,"MNAR bias in beta1 is negative, significant and grows with severity",PASS,"bias at 10% = -0.023, at 50% = -0.104"
+3,MNAR bias in the intercept is larger than in beta1 at 50%,PASS,
+4,"With 0% missing, all six single-imputation / EM methods equal the full-data OLS fit",PASS,max diff 4.4e-16
+4,Regression Imputation = Complete Case = EM (600 incomplete datasets),PASS,max diff 6.6e-08
+4,EM variance estimate equals the observed-case ML variance,PASS,max diff 6.2e-09
+4,EM converged (below the iteration cap) in every run,PASS,
+4,Mean imputation fills holes with the observed mean,PASS,
+4,Hot-Deck and PMM imputations are actual observed Y values (donors),PASS,
+4,Stochastic regression adds residuals drawn from the observed-fit residuals,PASS,
+4,"Mean imputation pulls beta1 towards 0 (30% MCAR, 200 datasets)",PASS,"avg beta1: complete case 1.995, mean imputation 1.385"
+4,Donor-based methods are consistent: bias is small at n = 1600 (40% MCAR),PASS,PMM bias: n=100 -0.098 -> n=1600 -0.007;  Hot-Deck: n=100 -0.158 -> n=1600 -0.034
+4,New toolbox reproduces Part 1 beta1 for 5 deterministic methods x 3 mechanisms,PASS,max diff 3.4e-08
+5,Own OLS coefficients and standard errors match statsmodels,PASS,
+5,"Rubin's rules reproduce Part 1 (pooled beta1 1.659261, SE 0.114170, df 127.60)",PASS,"got 1.659261, 0.114170, 127.604"
+5,Bootstrap SE agrees with the analytic OLS SE on complete data (ratio within 0.85-1.15),PASS,ratio = 1.093
+5,MICE with 0% missing equals the full-data OLS fit,PASS,max diff 8.9e-16
+5,Barnard-Rubin degrees of freedom are positive and at most n - p = 96,PASS,df for beta1 = 47.0
+6,Row count = 40 replicates x 106 rows,PASS,4240 rows
+6,"No missing values in estimates, SEs or interval limits",PASS,
+6,Every interval has positive width and every SE is positive,PASS,
+6,n_missing equals the severity level in every row (exact deletion),PASS,
+6,In the pilot: Regression Imputation = Complete Case = EM (all coefficients),PASS,max diff 6.4e-08
+6,Parallel run reproduces the sequential run exactly (replicates 0 and 1),PASS,
+6,MICE degrees of freedom are finite and positive,PASS,
+6,EM converged below the iteration cap in every run,PASS,max iterations = 129
+6,Mean imputation has the largest bias at 50% under every mechanism,PASS,
+6,Mean imputation bias worsens as MCAR severity grows (10% -> 50%),PASS,-0.224 -> -1.038
