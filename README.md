@@ -2,10 +2,6 @@
 
 ### Comparing missing-data handling methods for regression inference under MCAR, MAR and MNAR
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Purbasa2003/Missing-Data-Analysis/blob/main/Notebooks/Missing_Data_Part1_Replication.ipynb)
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Status](https://img.shields.io/badge/Status-Phase%201%20complete-brightgreen)
-
 An independent research project in applied statistics, built for learning and for a data science portfolio. It asks one practical question:
 
 > **When the response variable of a regression has missing values, how do different handling methods affect the estimated coefficients and their uncertainty, and how does the answer depend on *why* the data are missing?**
