@@ -252,3 +252,5 @@ Phase 1 follows the design of an earlier open-source project on missing data and
 ---
 
 **Author:** Purbasa Bhaduri · M.Sc. Statistics, St. Xavier's University, Kolkata
+## License
+This project is released under the [MIT License](LICENSE).
