@@ -1,0 +1,96 @@
+{
+  "stage": "Part 2A - Stage 2.5 (toolbox v2, all four coefficients)",
+  "run_date": "2026-10-11 19:56",
+  "master_seed": 42,
+  "n": 100,
+  "true_beta": [
+    5.0,
+    2.0,
+    -1.5,
+    1.0
+  ],
+  "severity_levels": [
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "mechanisms": {
+    "MCAR": {
+      "kind": "mcar",
+      "slope": 0.0
+    },
+    "MAR": {
+      "kind": "mar",
+      "slope": 1.0
+    },
+    "MNAR": {
+      "kind": "mnar",
+      "slope": 1.0
+    }
+  },
+  "methods": [
+    "Complete Case",
+    "Mean Imputation",
+    "Hot-Deck",
+    "Regression Imputation",
+    "Stochastic Regression",
+    "MICE",
+    "EM"
+  ],
+  "mice_m": 20,
+  "pmm_k": 5,
+  "em_tol": 1e-08,
+  "toolbox_version": 2,
+  "reuse_trio": true,
+  "run_settings": {
+    "R_TARGET": 1000,
+    "CHUNK": 25,
+    "BOOT_B": 200,
+    "N_JOBS_used": 1,
+    "replicates_main": 1000
+  },
+  "toolbox_sha256": "043484c4c7802d7d7ca7952035eab216671c7e6070383b23e0b4600a6026eaea",
+  "timing": {
+    "main": {
+      "chunks_timed": 40,
+      "wall_minutes": 21.7,
+      "sec_per_replicate_wall": 1.3
+    }
+  },
+  "speed_test": [
+    {
+      "setting": "1 core",
+      "n_jobs": 1,
+      "reps_per_sec": 0.846,
+      "sec_per_replicate": 1.181,
+      "main run (min)": 19.69
+    },
+    {
+      "setting": "2 cores (parallel)",
+      "n_jobs": 2,
+      "reps_per_sec": 0.662,
+      "sec_per_replicate": 1.51,
+      "main run (min)": 25.165
+    }
+  ],
+  "checks": {
+    "passed": 32,
+    "failed": 0,
+    "skipped": 0,
+    "failed_integrity": 0
+  },
+  "protocol_notes": [
+    "MAR here deletes an exact count with weights exp(-1.0*z(X1)); it is NOT Part 1's 30%/10% rule (standardised X1 gap about 0.97 SD vs about 0.5 SD at 20% missing).",
+    "MNAR here deletes an exact count with weights exp(1.0*z(Y)); Part 1 used slope 0.5 (no sensitivity run in this study).",
+    "Regression Imputation and EM reuse the Complete Case bootstrap (verified in 8.5b)."
+  ],
+  "environment": {
+    "python": "3.13.16",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "matplotlib": "3.10.0"
+  }
+}

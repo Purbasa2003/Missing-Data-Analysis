@@ -1,0 +1,33 @@
+section,check,result,detail
+8,Toolbox is byte-identical to the v2 toolbox (SHA-256),PASS,
+8,"Protocol constants are the agreed ones (n=100, 10-50%, 7 methods, m=20, k=5, seed 42, slopes 1.0/1.0, toolbox v2)",PASS,
+8,A replicate is exactly reproducible (same inputs -> identical rows),PASS,
+8,Main run produces 106 rows per replicate,PASS,106
+8,v2 output has SE and interval columns for all four coefficients,PASS,
+8.5,Row count = 1000 replicates x 106 rows,PASS,"106,000 rows"
+8.5,Every condition (mechanism x severity x method) has every replicate exactly once,PASS,106 conditions x 1000
+8.5,"No missing values in estimates, SEs or interval limits (all four coefficients)",PASS,
+8.5,All four SEs and all interval widths are positive,PASS,
+8.5,"v1 columns (se_b1, ci_lo, ci_hi) equal the b1 columns of the new layout",PASS,
+8.5,n_missing equals the severity level in every row (exact deletion),PASS,
+8.5,Complete Case = Regression Imputation = EM (all four coefficient estimates),PASS,max difference 7.6e-08
+8.5,EM converged below the iteration cap in every run,PASS,max 156 iterations; average 34
+8.5,"Replicates [0, 500, 999] recomputed from scratch equal the stored results",PASS,max difference 4.9e-09
+8.5b,"Full EM/Regression bootstrap (no shortcut) equals the stored values on replicates [0, 500, 999]",PASS,max difference 4.8e-08
+8.5c,"New run reproduces the old Stage 2 results (b0-b3 estimates, beta1 SE and interval)",PASS,"106,000 rows compared (40 chunk files in /content/drive/MyDrive/MissingData_Part2A_Stage2/main_chunks); max difference 1.6e-07"
+9,My performance tables equal the toolbox's summarise_results for all four coefficients (all measures),PASS,max difference 0.0e+00
+9,Each coefficient's table has one row per condition (105 method conditions + 1 Full Data reference),PASS,106 rows per coefficient
+9,Vectorised jackknife MC SE equals a brute-force jackknife,PASS,
+9.5,Full Data: coverage is 95% within 3.5 Monte Carlo SE,PASS,94.1% (MC SE 0.7)
+9.5,Full Data: all four coefficients unbiased (|bias| < 4 MC SE),PASS,largest z = 1.58
+9.5,Complete Case beta1 is unbiased under MCAR and MAR (|bias| < 4 MC SE at every level),PASS,"largest z: MCAR 2.36, MAR 2.85"
+9.5,Complete Case under MNAR: intercept bias is negative at every level and grows with severity,PASS,"bias(beta0) = -0.037, -0.081, -0.124, -0.185, -0.250"
+9.5,Mean Imputation has the largest |bias| of all methods in all 15 mechanism x severity cells,PASS,
+9.5,Mean Imputation |bias| increases with severity under MCAR,PASS,0.19 -> 0.39 -> 0.60 -> 0.80 -> 1.01
+9.5,Complete Case coverage under MCAR/MAR is within 3 points (+3 MC SE) of 95% everywhere,PASS,range 92.0% - 93.3%
+9.5,Complete Case SE ratio under MCAR/MAR lies in 0.90 - 1.15 (allowing 2 MC SE of slack),PASS,range 0.98 - 1.04; MC SE up to 0.025
+9.5,Full Data: coverage of all four coefficients is 95% within 3.5 Monte Carlo SE,PASS,coverage 95.7% / 94.1% / 95.3% / 94.7%
+9.5,Complete Case coverage under MCAR/MAR is within 3 points (+3 MC SE) of 95% for all four coefficients,PASS,range 91.6% - 94.6%
+9.5,Complete Case SE ratio under MCAR/MAR lies in 0.90 - 1.15 (+2 MC SE slack) for all four coefficients,PASS,
+10,Four severity figures written (3 dashboards + headline coverage),PASS,4 files
+10,Four-coefficient MNAR figure written,PASS,
